@@ -1,0 +1,19 @@
+Do by hand.
+
+There are 36 letters counting 1-9.
+There are 70 letters counting 10-19.
+The sum of letters in "twenty" to "ninety" is 46.
+Therefore there are 854 letters counting "one" to "ninety nine".
+You do this 10 times.
+(Thus we need to count 854*10 letters in the ones and tens digits.)
+
+There are 99 letters in "one hundred", "two hundered", ...
+There are 36*99 + 10*99*9 = 126*99 letters used in "x hundred and" ("hundred and" has 10 letters, is used 99 times for each of 1-9, and x = 1...9 has 36 letters, each counted 99 times).
+(added up this is 127*99)
+
+
+There are 11 letters in "one thousand".
+
+Thus, there are
+854*10 + 99 + 127*99 + 11 = 21124
+letters.

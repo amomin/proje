@@ -1,7 +1,7 @@
 <?
 
 $ans = array();
-$N = 100000;
+$N = 100;
 $x=2;
 function sqmod($i, $n){
 	return ($i*$i) % $n;
@@ -51,8 +51,8 @@ for ($x=2; $x < sqrt($N); $x++){
 		$l += 1;
 	}
 }
-//ksort($ans);
-//print_r($ans);
+ksort($ans);
+print_r($ans);
 
 echo "Time: ". (time() - $t1) . "\n";
 echo "SUM: ". array_sum($ans);

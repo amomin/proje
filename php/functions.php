@@ -64,6 +64,22 @@ function getPrimesSieve($MAX){
 	}
 	return $primes;
 }
+function getPrimesFromDB($n){
+	$query = "select value from primes where value<?";
+	$values=array($n);
+	try{
+		$DBO = new PDO("mysql:host=localhost;dbname=numbers", "numbers","numbers");
+		$DBO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$QUERY=$DBO->prepare($query);
+		$QUERY->execute($values);
+		$result = $QUERY->fetchAll();
+		$DBO=null;
+	}catch(Exception $e){
+		echo $e->getMessage();
+	}
+	$result = array_map (function($v){return $v['value'];}, $result);
+	return $result;
+}
 function populateFactorizationsDB($MIN, $MAX){
 	//$factorizations = array();
 	$qMarray = array();
@@ -82,7 +98,7 @@ function populateFactorizationsDB($MIN, $MAX){
 	$qmarks = implode(',',$qMarray);
 	$query = "INSERT INTO factors(number,prime,power) VALUES $qmarks";
 	try{
-		$DBO = new PDO("mysql:host=localhost;dbname=numbers", "public","");
+		$DBO = new PDO("mysql:host=localhost;dbname=numbers", "numbers","numbers");
 		$DBO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$QUERY=$DBO->prepare("delete from primes");
 		$QUERY->execute();
@@ -103,7 +119,7 @@ function populatePrimesDB($MAX){
 	}
 	$query = "INSERT INTO primes(value) values $questionmarks";
 	try{
-		$DBO = new PDO("mysql:host=localhost;dbname=numbers", "public","");
+		$DBO = new PDO("mysql:host=localhost;dbname=numbers", "numbers","numbers");
 		$DBO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$QUERY=$DBO->prepare("delete from primes");
 		$QUERY->execute();

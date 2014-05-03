@@ -49,6 +49,20 @@ function getPrimesMiller($MAX, $MIN=2){
 	}
 	return $primes;
 }
+function getPrimesDB($MAX){
+	try{
+		$DBO = new PDO("mysql:host=localhost;dbname=numbers", "public","");
+		$DBO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$QUERY=$DBO->prepare("SELECT * FROM primes WHERE value<=$MAX");
+		$QUERY->execute();
+		$DBO=null;
+		//return $QUERY->fetchAll( PDO::FETCH_ASSOC);
+		return $QUERY->fetchAll( PDO::FETCH_COLUMN);
+	}catch(Exception $e){
+		echo $e->getMessage();
+	}
+
+}
 // Use a sieve method to generate primes
 function getPrimesSieve($MAX){
 	$nums = array();

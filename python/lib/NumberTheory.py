@@ -13,3 +13,14 @@ def phi(m): # Returns the value of Euler's Totient function phi(n)
 		return answer*(m-1)
 	else:
 		return answer
+
+def gcd(a,b):
+	m = min(a,b)
+	n = max(a,b)
+	return gcdminmax(m,n)
+
+def gcdminmax(a,b):
+	if (b%a) == 0:
+		return a
+	else:
+		return gcdminmax(b%a,a)

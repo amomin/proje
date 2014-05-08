@@ -163,3 +163,20 @@ function MillerPrimeTest($n, $k) {
     }
     return true;
 }
+/* Generate permutations from an array */
+function permutations($n, $available=array(0,1,2,3,4,5,6,7,8,9)){
+	if ($n==0){
+		return array(array());
+	}
+	$solns=array();
+	foreach ($available as $k=>$v){
+		$a = $available;
+		unset($a[$k]);
+		$perms = permutations($n-1,$a);
+		foreach ($perms as $p){
+				$soln = array_merge(array($v),$p);
+			$solns[] = $soln;
+		}
+	}
+	return $solns;
+}

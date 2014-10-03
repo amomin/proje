@@ -1,0 +1,1 @@
+Not much to see here - some solutions projecteuler.net problems, none of them particularly difficult or original.  Mostly solved during the 2011-2012 academic year in an effort to ease back into coding after years of neglect, though I solved a few more later on as well to gain some of the levels that were easily attainable.

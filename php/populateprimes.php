@@ -1,7 +1,7 @@
-<?
+<?php
 include "functions.php";
 $t0 = microtime(true);
-populatePrimesDB(1500000, 999999);
+populatePrimesDB(9999);
 echo "Time elapsed: ". (microtime(true) - $t0);
 //
 

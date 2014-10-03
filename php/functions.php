@@ -49,6 +49,20 @@ function getPrimesMiller($MAX, $MIN=2){
 	}
 	return $primes;
 }
+function getPrimesDB($MAX){
+	try{
+		$DBO = new PDO("mysql:host=localhost;dbname=numbers", "public","");
+		$DBO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$QUERY=$DBO->prepare("SELECT * FROM primes WHERE value<=$MAX");
+		$QUERY->execute();
+		$DBO=null;
+		//return $QUERY->fetchAll( PDO::FETCH_ASSOC);
+		return $QUERY->fetchAll( PDO::FETCH_COLUMN);
+	}catch(Exception $e){
+		echo $e->getMessage();
+	}
+
+}
 // Use a sieve method to generate primes
 function getPrimesSieve($MAX){
 	$nums = array();
@@ -164,4 +178,21 @@ function MillerPrimeTest($n, $k) {
         return false;
     }
     return true;
+}
+/* Generate permutations from an array */
+function permutations($n, $available=array(0,1,2,3,4,5,6,7,8,9)){
+	if ($n==0){
+		return array(array());
+	}
+	$solns=array();
+	foreach ($available as $k=>$v){
+		$a = $available;
+		unset($a[$k]);
+		$perms = permutations($n-1,$a);
+		foreach ($perms as $p){
+				$soln = array_merge(array($v),$p);
+			$solns[] = $soln;
+		}
+	}
+	return $solns;
 }

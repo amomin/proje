@@ -1,0 +1,9 @@
+Found difference: f( 1753 ) is  1800  and from net  1782
+Found difference: f( 2164 ) is  2240  and from net  2232
+Found difference: f( 3534 ) is  3600  and from net  3564
+Found difference: f( 4914 ) is  4992  and from net  4968
+Found difference: f( 6269 ) is  6325  and from net  6318
+Found difference: f( 6792 ) is  6864  and from net  6840
+Found difference: f( 7097 ) is  7140  and from net  7128
+Found difference: f( 8858 ) is  8932  and from net  8928
+Found difference: f( 9881 ) is  9975  and from net  9936

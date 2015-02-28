@@ -57,7 +57,7 @@ class Poly:
   ##
   def fit(self, lst):
     deg = len(lst)
-    xvals = range(1,deg+1)
+    xvals = list(range(1,deg+1))
     coeffs = [0.0] * deg
     # Sum over the terms, indexed by
     # k = the omitted value.  This term has coefficient
@@ -74,13 +74,13 @@ class Poly:
       # Sum over degrees of the terms
       for currdeg in range(0,deg+1):
         # There are deg choose currdeg terms of degree currdeg,
-	# use comb to iterate over all of them, and to
-	# extract their product
+        # use comb to iterate over all of them, and to
+        # extract their product
         for terms in comb(xvals, currdeg):
           prod = 1
-	  for p in terms:
-	    prod = (-1) * prod * p
-	  coeffs[deg - currdeg - 1] = coeffs[deg - currdeg - 1] + 1.0*num*prod/(1.0*denom)
+          for p in terms:
+            prod = (-1) * prod * p
+          coeffs[deg - currdeg - 1] = coeffs[deg - currdeg - 1] + 1.0*num*prod/(1.0*denom)
       xvals.insert(0, k)
     # Optional - round to integer coefficient  
     for i in range(0,len(coeffs)):
@@ -97,18 +97,18 @@ p = Poly([1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1])
 pVals = []
 for i in range(1, p.degree() + 1):
   pVals.append(p.evl(i))
-print pVals
+print(pVals)
 
 badVals = 0
 for deg in range(1, p.degree() + 1):
   fitPoly = Poly([0])
   toFit = pVals[:deg]
   fitPoly.fit(toFit)
-  print fitPoly.toString()
+  print(fitPoly.toString())
 
   if abs(p.evl(deg + 1) - fitPoly.evl(deg + 1)) > 0.00000001:
     badVals = badVals + fitPoly.evl(deg + 1)
   #for i in range(1,len(toFit) + 2):
-    #print p.evl(i), fitPoly.evl(i)
+    #print(p.evl(i), fitPoly.evl(i))
 
-print "Bad values sum = ", badVals
+print("Bad values sum = ", badVals)
